@@ -801,7 +801,9 @@ moduleFor(
         Route.extend({
           actions: {
             showPost(context) {
-              this.transitionTo('post', context);
+              expectDeprecation(() => {
+                this.transitionTo('post', context);
+              }, /Calling transitionToRoute on a controller is deprecated/);
             },
           },
         })
@@ -820,7 +822,9 @@ moduleFor(
 
           actions: {
             editPost() {
-              this.transitionTo('post.edit');
+              expectDeprecation(() => {
+                this.transitionTo('post.edit');
+              }, /Calling transitionToRoute on a controller is deprecated/);
             },
           },
         })

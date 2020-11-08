@@ -37,6 +37,7 @@ import {
   TransitionState,
 } from 'router_js';
 import {
+  deprecateTransitionMethods,
   calculateCacheKey,
   normalizeControllerQueryParams,
   prefixRouteNameArg,
@@ -805,7 +806,7 @@ class Route extends EmberObject implements IRoute {
     @public
   */
   transitionTo(...args: any[]) {
-    // eslint-disable-line no-unused-vars
+    deprecateTransitionMethods('route', 'transitionTo');
     return this._router.transitionTo(...prefixRouteNameArg(this, args));
   }
 
@@ -900,6 +901,7 @@ class Route extends EmberObject implements IRoute {
     @public
   */
   replaceWith(...args: any[]) {
+    deprecateTransitionMethods('route', 'replaceWith');
     return this._router.replaceWith(...prefixRouteNameArg(this, args));
   }
 

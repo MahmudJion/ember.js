@@ -1888,7 +1888,9 @@ moduleFor(
         'route:parent',
         Route.extend({
           afterModel() {
-            this.transitionTo('parent.child');
+            expectDeprecation(() => {
+              this.transitionTo('parent.child');
+            }, /Calling transitionToRoute on a controller is deprecated/);
           },
         })
       );

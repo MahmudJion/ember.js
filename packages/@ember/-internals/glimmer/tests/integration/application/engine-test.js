@@ -565,7 +565,9 @@ moduleFor(
       return this.visit('/')
         .then(() => {
           this.assertText('Application');
-          return this.transitionTo('blog.post');
+          expectDeprecation(() => {
+            return this.transitionTo('blog.post');
+          }, /Calling transitionToRoute on a controller is deprecated/);
         })
         .then(() => {
           return errorEntered.promise;
